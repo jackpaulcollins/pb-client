@@ -1,6 +1,9 @@
 'use client'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import './globals.css'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
   return (
@@ -8,7 +11,7 @@ export default function RootLayout({ children }) {
     clientId="783783941258-m7cc9mb9rodak6hmsmlnv7kr0471tn5v.apps.googleusercontent.com"
     >
       <html lang="en">
-        <body>{children}</body>
+        <body className={inter.className}>{children}</body>
       </html>
     </GoogleOAuthProvider>
   )
