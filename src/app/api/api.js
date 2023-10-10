@@ -1,6 +1,12 @@
 import { setToken, getToken } from "../utils/apiHelper";
 
-const BASE_URL = 'http://localhost:3001/api/v1';
+let BASE_URL;
+
+if (process.env.NODE_ENV === 'production') {
+  BASE_URL = 'https://path-buddy-4102d3465248.herokuapp.com/api/v1';
+} else {
+  BASE_URL = 'http://localhost:3001/api/v1';
+}
 
 export async function GET(endpoint, options = {}) {
   try {
