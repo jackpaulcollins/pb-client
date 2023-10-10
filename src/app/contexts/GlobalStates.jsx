@@ -1,12 +1,12 @@
 "use client"
 import { createContext, useContext, useReducer } from "react"
 
-const UserContext = createContext({
+const AuthContext = createContext({
   user: {},
   setUser: () => "",
 });
 
-export const UserContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
   const userReducer = (state, action) => {
     switch (action.type) {
       case 'SET_USER':
@@ -24,10 +24,10 @@ export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState)
 
   return (
-    <UserContext.Provider value={{ user: state.user, dispatch }}>
+    <AuthContext.Provider value={{ user: state.user, dispatch }}>
       {children}
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
-export const useUserContext = () => useContext(UserContext);
+export const useAuthContext = () => useContext(AuthContext);

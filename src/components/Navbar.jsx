@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useUserContext } from '@/app/contexts/UserStore';
+import { useAuthContext } from '@/app/contexts/GlobalStates';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -15,7 +15,7 @@ function classNames(...classes) {
 
 function Navbar() {
   const router = useRouter();
-  const { user, dispatch } = useUserContext();
+  const { user, dispatch } = useAuthContext();
 
   const activeLink = (linkIdentifier) => {
     const path  = window.location.pathname;

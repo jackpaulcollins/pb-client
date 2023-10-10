@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import ErrorAlert from '@/components/ErrorAlert';
 import { POST } from '../api/api';
 import GoogleAuthProvider from '@/components/GoogleAuthProvider';
-import { useUserContext } from '../contexts/UserStore'
+import { useAuthContext } from '../contexts/GlobalStates'
 
 function Login() {
   const emailRef = useRef();
@@ -14,7 +14,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
-  const { dispatch } = useUserContext();
+  const { dispatch } = useAuthContext();
 
   useEffect(() => {
     emailRef.current.focus();

@@ -1,11 +1,11 @@
-import { useUserContext } from '@/app/contexts/UserStore';
+import { useAuthContext } from '@/app/contexts/GlobalStates';
 import { GoogleLogin } from '@react-oauth/google';
 import { POST } from '@/app/api/api';
 import { useRouter } from 'next/navigation';
 
 function GoogleAuthProvider() {
   const router = useRouter();
-  const { dispatch } = useUserContext();
+  const { dispatch } = useAuthContext();
 
   const signUpFromOauth = async (token) => {
     const body = { credentials: { provider: 'google', token }}
