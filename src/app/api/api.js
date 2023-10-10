@@ -1,3 +1,5 @@
+import { setToken, getToken } from "../utils/apiHelper";
+
 const BASE_URL = 'http://localhost:3001/api/v1';
 
 export async function GET(endpoint, options = {}) {
@@ -13,29 +15,38 @@ export async function GET(endpoint, options = {}) {
 export async function POST(endpoint, body = {}) {
   try {
 
-    const headers = {
+    const requestHeaders = {
       'Content-Type': 'application/json',
     };
 
-    const token = localStorage.getItem('PB-JWT-TOKEN')
+    const token = getToken();
 
     if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+      requestHeaders['Authorization'] = `Bearer ${token}`;
     }
 
     const response = await fetch(`${BASE_URL}/${endpoint}`, {
       method: 'POST',
-      headers: headers,
+      headers: requestHeaders,
       body: JSON.stringify(body),
     });
+
+    const { status } = response;
+
+    setToken(response.headers.get('authorization').replace('Bearer ', ''));
+    
+    const responseHeaders = {
+      'content-type': response.headers.get('content-type'),
+    };
 
     if (!response.ok) {
       throw new Error('Request failed with status: ' + response.status);
     }
     const data = await response.json();
 
-    return data
+    return { status, responseHeaders, data }
   } catch (error) {
+    console.log(error)
     throw error;
   }
 }

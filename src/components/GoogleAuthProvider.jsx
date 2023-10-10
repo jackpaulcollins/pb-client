@@ -1,19 +1,18 @@
-/* eslint-disable */
-
+import { useUserContext } from '@/app/contexts/UserStore';
 import { GoogleLogin } from '@react-oauth/google';
-
+import { POST } from '@/app/api/api';
+import { useRouter } from 'next/navigation';
 
 function GoogleAuthProvider() {
+  const router = useRouter();
+  const { dispatch } = useUserContext();
 
   const signUpFromOauth = async (token) => {
-    // const response = await registerWithOauth({ provider: "google", token}).unwrap();
-    // const { user } = response.data
-    // const { authorization } = response.headers;
-    // const response_token = authorization.replace('Bearer ', '');
-    // dispatch(setCredentials({ user, token: response_token }));
-    // localStorage.setItem('PB-JWT-TOKEN', response_token);
-
-    // navigate('/dashboard');
+    const body = { credentials: { provider: 'google', token }}
+    const response = await POST('users/oauth/register', body)
+    const { user } = response.data
+    dispatch({ type: "SET_USER", payload: user })
+    router.push('/dashboard');
   }
 
   const responseMessage = (response) => {

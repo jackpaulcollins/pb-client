@@ -14,7 +14,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
-  const { user, dispatch } = useUserContext();
+  const { dispatch } = useUserContext();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -30,13 +30,8 @@ function Login() {
     try {
       const body = { user: { email, password }};
       const response = await POST('users/sign_in', body)
-      const { user } = response;
-      // const { authorization } = response.headers;
-      // const token = authorization.replace('Bearer ', '');
-      // localStorage.setItem('PB-JWT-TOKEN', token);
+      const { user } = response.data;
       dispatch({ type: "SET_USER", payload: user })
-      setEmail('');
-      setPassword('');
       router.push('/dashboard');
     } catch (error) {
       if (error.status === 401) {
@@ -57,9 +52,8 @@ function Login() {
 
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tigh">
           Sign in to your account
-          {JSON.stringify(user)}
         </h2>
       </div>
 
@@ -80,7 +74,7 @@ function Login() {
                     value={email}
                     onChange={handleEmailInput}
                     autoComplete="on"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     required
                   />
                 </label>
@@ -97,7 +91,7 @@ function Login() {
                   value={password}
                   required
                   autoComplete="current-password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </label>
             </div>
