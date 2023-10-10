@@ -1,10 +1,7 @@
 "use client"
 import { createContext, useContext, useReducer } from "react"
 
-const AuthContext = createContext({
-  user: {},
-  setUser: () => "",
-});
+const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const userReducer = (state, action) => {
