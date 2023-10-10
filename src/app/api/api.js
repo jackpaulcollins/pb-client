@@ -23,7 +23,6 @@ export async function POST(endpoint, body = {}) {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    console.log(body)
     const response = await fetch(`${BASE_URL}/${endpoint}`, {
       method: 'POST',
       headers: headers,
@@ -33,8 +32,9 @@ export async function POST(endpoint, body = {}) {
     if (!response.ok) {
       throw new Error('Request failed with status: ' + response.status);
     }
+    const data = await response.json();
 
-    return await response.json();
+    return data
   } catch (error) {
     throw error;
   }

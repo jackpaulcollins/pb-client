@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import ErrorAlert from '@/components/ErrorAlert';
 import { POST } from '../api/api';
 import GoogleAuthProvider from '@/components/GoogleAuthProvider';
+import { useUserContext } from '../contexts/UserStore'
 
 function Login() {
   const emailRef = useRef();
@@ -13,6 +14,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
+  const { user, dispatch } = useUserContext();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -26,17 +28,16 @@ function Login() {
     e.preventDefault();
 
     try {
-      const userInput = { email, password };
-      const response = await POST('login', userInput)
-      // const response = await login({ user: userInput }).unwrap();
-      const { user } = response.data;
+      const body = { user: { email, password }};
+      const response = await POST('users/sign_in', body)
+      const { user } = response;
       // const { authorization } = response.headers;
       // const token = authorization.replace('Bearer ', '');
-      // dispatch(setCredentials({ user, token }));
       // localStorage.setItem('PB-JWT-TOKEN', token);
+      dispatch({ type: "SET_USER", payload: user })
       setEmail('');
       setPassword('');
-      // router.push('/dashboard');
+      router.push('/dashboard');
     } catch (error) {
       if (error.status === 401) {
         setErrMsg(error.data.data.error);
@@ -58,6 +59,7 @@ function Login() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
+          {JSON.stringify(user)}
         </h2>
       </div>
 
