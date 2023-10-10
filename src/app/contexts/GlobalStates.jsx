@@ -1,7 +1,7 @@
 "use client"
 import { createContext, useContext, useReducer, useEffect, useState } from "react"
 import { usePathname } from 'next/navigation';
-import { POST } from "../api/api";
+import { VERIFY } from "../api/api";
 import { getToken } from "../utils/apiHelper";
 
 const AuthContext = createContext();
@@ -35,8 +35,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const verifyToken = async () => {
       try {
-        const token = getToken();
-        const response = await POST('tokens/verify', {token})
+        const response = await VERIFY('tokens/verify')
 
         if (response.status === 200) {
           const { user } = response.data ;

@@ -18,6 +18,33 @@ export async function GET(endpoint, options = {}) {
   }
 }
 
+export async function VERIFY(){
+  const token = getToken();
+  
+  if (!token) {
+    return window.location.href = '/login';
+  }
+
+  const response = await fetch(`${BASE_URL}/tokens/verify`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token }),
+  });
+
+  const { status } = response;
+
+  const responseHeaders = {
+    'content-type': response.headers.get('content-type'),
+  };
+
+  if (!response.ok) {
+    throw new Error('Request failed with status: ' + response.status);
+  }
+  const data = await response.json();
+
+  return { status, responseHeaders, data }
+}
+
 export async function POST(endpoint, body = {}) {
   try {
 
@@ -38,8 +65,11 @@ export async function POST(endpoint, body = {}) {
     });
 
     const { status } = response;
+    const responseToken = response.headers.get('authorization').replace('Bearer ', '');
 
-    setToken(response.headers.get('authorization').replace('Bearer ', ''));
+    if (responseToken) {
+      setToken(responseToken);
+    }
     
     const responseHeaders = {
       'content-type': response.headers.get('content-type'),
