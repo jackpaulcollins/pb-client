@@ -26,7 +26,6 @@ export const AuthContextProvider = ({ children }) => {
   const [initialLoading, setInitialLoading] = useState(true);
 
   const path = usePathname();
-  console.log(path)
 
   useEffect(() => {
     if (path === '/login') {
