@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/app/contexts/GlobalStates';
+import { useAuthContext } from '@/app/contexts/AuthProvider';
 import { GoogleLogin } from '@react-oauth/google';
 import { POST } from '@/app/api/api';
 import { useRouter } from 'next/navigation';

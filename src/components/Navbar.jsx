@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useAuthContext } from '@/app/contexts/GlobalStates';
+import { useAuthContext } from '@/app/contexts/AuthProvider';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');

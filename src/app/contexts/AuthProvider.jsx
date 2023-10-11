@@ -2,11 +2,10 @@
 import { createContext, useContext, useReducer, useEffect, useState } from "react"
 import { usePathname } from 'next/navigation';
 import { VERIFY } from "../api/api";
-import { getToken } from "../utils/apiHelper";
 
 const AuthContext = createContext();
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
 
   const userReducer = (state, action) => {
     switch (action.type) {

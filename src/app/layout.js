@@ -1,7 +1,8 @@
 'use client'
 
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import { AuthContextProvider } from './contexts/GlobalStates';
+import { AuthProvider } from './contexts/AuthProvider';
+import { DateProvider } from './contexts/DateProvider';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -14,7 +15,11 @@ export default function RootLayout({ children }) {
         >
         <html lang="en">
           <body className={inter.className}>
-            <AuthContextProvider>{children}</AuthContextProvider>
+            <AuthProvider>
+              <DateProvider>
+                {children}
+              </DateProvider>
+            </AuthProvider>
           </body>
         </html>
       </GoogleOAuthProvider>

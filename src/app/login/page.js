@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import ErrorAlert from '@/components/ErrorAlert';
 import { POST } from '../api/api';
 import GoogleAuthProvider from '@/components/GoogleAuthProvider';
-import { useAuthContext } from '../contexts/GlobalStates'
+import { useAuthContext } from '../contexts/AuthProvider'
 
 function Login() {
   const emailRef = useRef();

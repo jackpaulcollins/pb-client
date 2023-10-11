@@ -8,10 +8,19 @@ if (process.env.NODE_ENV === 'production') {
   BASE_URL = 'http://localhost:3001/api/v1';
 }
 
-export async function GET(endpoint, options = {}) {
+export async function GET(endpoint) {
+  const requestHeaders = {
+    'Content-Type': 'application/json',
+  };
+
+  const token = getToken();
+
+  if (token) {
+    requestHeaders['Authorization'] = `Bearer ${token}`;
+  }
+
   try {
-    const response = await fetch(`${BASE_URL}/${endpoint}`, options);
-    return response.data;
+    return await fetch(`${BASE_URL}/${endpoint}`, { headers: requestHeaders });
   } catch (error) {
 
     throw error;
@@ -36,6 +45,10 @@ export async function VERIFY(){
   const responseHeaders = {
     'content-type': response.headers.get('content-type'),
   };
+
+  if (response.status === 403 && !response.ok){
+    return window.location.href = '/login';
+  }
 
   if (!response.ok) {
     throw new Error('Request failed with status: ' + response.status);
