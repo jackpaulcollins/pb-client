@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       case 'SET_DATA':
         return { ...state, data: action.payload };
       case 'CLEAR_USER':
-        return { ...state, data: {} };
+        return { ...state, user: null };
       default:
         return state;
     }

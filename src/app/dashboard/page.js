@@ -17,7 +17,6 @@ function Dahboard() {
   const content = (
     <div>
       {/* { maybeRenderFlash() } */}
-      <Navbar />
       <DashboardTimeline />
     </div>
   );

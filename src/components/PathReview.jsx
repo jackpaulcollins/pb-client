@@ -68,8 +68,8 @@ function PathReview({ formData }) {
   );
 
   return (
-    <div className="w-7/8 m-auto h-full rounded-md p-4">
-      <h2 className="text-base font-semibold leading-7 text-gray-900">Path Review</h2>
+    <div className="w-7/8 m-auto h-full rounded-md p-4 text-black">
+      <h2 className="text-base font-semibold leading-7">Path Review</h2>
       <div className="mt-2 rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5 p-4">
         <div>
           {renderPathNameAndWhy()}

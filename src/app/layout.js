@@ -3,6 +3,7 @@
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AuthProvider } from './contexts/AuthProvider';
 import { DateProvider } from './contexts/DateProvider';
+import Navbar from '@/components/Navbar';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           <body className={inter.className}>
             <AuthProvider>
               <DateProvider>
+                <Navbar/>
                 {children}
               </DateProvider>
             </AuthProvider>

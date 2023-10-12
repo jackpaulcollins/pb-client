@@ -23,11 +23,12 @@ function Navbar() {
   };
 
   const handleLogout = () => {
-    dispatch(logOut());
+    dispatch({type: 'CLEAR_USER'});
     localStorage.removeItem('PB-JWT-TOKEN');
     router.push('/login');
   };
 
+  console.log(user)
   if (user) {
     return (
       <Disclosure as="nav" className="bg-gray-800">

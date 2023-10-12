@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faI } from '@fortawesome/free-solid-svg-icons';
+import Trash from './assets/icons/Trash';
+import CirclePlus from './assets/icons/CirclePlus';
 import PropTypes from 'prop-types';
 import Dropdown from '../components/Dropdown';
 import SelectField from '../components/SelectField';
@@ -150,7 +152,7 @@ function PathUnit({
           />
         </div>
         <div className="hover:cursor-pointer self-center">
-          <FontAwesomeIcon onClick={() => onRemove(idx)} icon={faTrash} />
+          <Trash onClick={() => onRemove(idx)} />
         </div>
       </div>
       <div>
