@@ -39,6 +39,8 @@ function CurrentUserPath() {
 
   const calculatedDate = calculateDateFromOffest();
 
+  console.log(calculatedDate)
+
   const getCurrentUserPath = async () => {
     const response = await GET(`paths/${user.id}`)
     if (response.status === 200) {
