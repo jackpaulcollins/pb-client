@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '@/app/contexts/AuthProvider';
-import { dispatch, useDateContext } from '@/app/contexts/DateProvider';
+import { useDateContext } from '@/app/contexts/DateProvider';
 import {
   toDate, format, addDays, subDays,
 } from 'date-fns';
@@ -16,9 +16,8 @@ import Check from '../../../components/assets/icons/Check';
 import X from '../../../components/assets/icons/X';
 
 function CurrentUserPath() {
-  const fromRouteData = location.state?.data;
-  const { user, dispatch: authDispatch } = useAuthContext();
-  const { date, dispatch: dateDispatch } = useDateContext();
+  const { user } = useAuthContext();
+  const { date, dispatch } = useDateContext();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [path, setPath] = useState(null);
@@ -38,7 +37,7 @@ function CurrentUserPath() {
     return format(toDate(offSetDate, { timeZone: user.time_zone }), 'MMMM d, yyyy');
   };
 
-  const d = calculateDateFromOffest();
+  const calculatedDate = calculateDateFromOffest();
 
   const getCurrentUserPath = async () => {
     const response = await GET(`paths/${user.id}`)
@@ -50,30 +49,25 @@ function CurrentUserPath() {
     }
   };
 
-  const getCurrentDateValidity = async (pathId, currDate) => {
-    const response = await GET(`/api/v1/valid_on_date?id=${pathId}&date=${currDate}`)
+  const getdateValidity = async (pathId, currDate) => {
+    const response = await GET(`valid_on_date?id=${pathId}&date=${currDate}`)
     const { validity } = response.data;
     setValidForDate(validity);
   };
 
   const getCurrentStreak = async (pathId) => {
-    const response = await GET(`/api/v1/streak?id=${pathId}`)
+    const response = await GET(`streak?id=${pathId}`)
     const { streak } = response.data;
     setCurrentStreak(streak);
   };
 
   useEffect(() => {
     setLoading(true);
-    dateDispatch('SET_DATE', d);
+    dispatch({ type: 'SET_DATE', payload: calculatedDate});
 
     const fetchData = async () => {
-      if (!fromRouteData) {
-        await getCurrentUserPath();
-      } else {
-        setPath(fromRouteData.path);
-      }
-    };
-
+    await getCurrentUserPath();
+    }
     fetchData();
     setLoading(false);
   }, [dateOffest]);
@@ -84,7 +78,7 @@ function CurrentUserPath() {
 
   useEffect(() => {
     const fetchValid = async () => {
-      await getCurrentDateValidity(path.id, date);
+      await getdateValidity(path.id, calculatedDate);
     };
 
     const fetchCurrentStreak = async () => {

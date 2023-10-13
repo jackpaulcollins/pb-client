@@ -45,7 +45,7 @@ function NewPathForm() {
     } = formData;
 
     try {
-      const response = await POST({
+      const response = await POST('paths',{
         path: {
           path_name: pathName,
           path_description: pathWhy,

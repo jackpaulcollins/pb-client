@@ -6,6 +6,8 @@ import ThumbsUp from './assets/icons/ThumbsUp';
 import ThumbsDown from './assets/icons/ThumbsDown';
 import PathScheduleParser from '../app/utils/PathScheduleParser';
 import ComponentLoading from '../components/ComponentLoading';
+import { POST, GET } from '@/app/api/api';
+import { useDateContext } from '@/app/contexts/DateProvider';
 
 function PathUnitSection({ unit, reFetchPath }) {
   PathUnitSection.propTypes = {
@@ -18,11 +20,10 @@ function PathUnitSection({ unit, reFetchPath }) {
     reFetchPath: PropTypes.func.isRequired,
   };
 
-  const [createReport] = useCreatePathUnitReportMutation();
-  const [getReport] = useGetPathUnitReportMutation();
   const [reportState, setReportState] = useState();
   const [loading, setLoading] = useState(true);
-  const date = useSelector(selectCurrentPathDate);
+  const { date } = useDateContext();
+  const formattedDate = date.date; 
 
   const {
     id, name, schedule, polarity,
@@ -31,10 +32,7 @@ function PathUnitSection({ unit, reFetchPath }) {
   const fetchReport = async () => {
     setLoading(true);
     try {
-      const response = await getReport({
-        id,
-        date,
-      }).unwrap();
+      const response = await GET(`path_unit_reports?id=${id}&date=${formattedDate}`)
       const { report } = response.data;
       setReportState(report?.status);
     } catch (error) {
@@ -49,16 +47,18 @@ function PathUnitSection({ unit, reFetchPath }) {
 
     fetchReport();
     setLoading(false);
-  }, [date]);
+  }, [formattedDate]);
 
   const createNewReport = async (status) => {
-    await createReport({
-      path_unit_report: {
-        path_unit_id: id,
-        date,
-        status,
-      },
-    });
+    await POST('path_unit_reports',
+      {
+        path_unit_report: {
+          path_unit_id: id,
+          date: formattedDate,
+          status,
+        }
+      }
+    );
     fetchReport();
     reFetchPath();
   };

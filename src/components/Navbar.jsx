@@ -28,7 +28,6 @@ function Navbar() {
     router.push('/login');
   };
 
-  console.log(user)
   if (user) {
     return (
       <Disclosure as="nav" className="bg-gray-800">

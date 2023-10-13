@@ -20,7 +20,10 @@ export async function GET(endpoint) {
   }
 
   try {
-    return await fetch(`${BASE_URL}/${endpoint}`, { headers: requestHeaders });
+    const response = await fetch(`${BASE_URL}/${endpoint}`, { headers: requestHeaders });
+    const { status } = response;
+    const data = await response.json();
+    return { status, data }
   } catch (error) {
 
     throw error;
@@ -78,10 +81,10 @@ export async function POST(endpoint, body = {}) {
     });
 
     const { status } = response;
-    const responseToken = response.headers.get('authorization').replace('Bearer ', '');
+    const responseToken = response.headers.get('authorization');
 
     if (responseToken) {
-      setToken(responseToken);
+      setToken(responseToken.replace('Bearer ', ''));
     }
     
     const responseHeaders = {
@@ -95,7 +98,7 @@ export async function POST(endpoint, body = {}) {
 
     return { status, responseHeaders, data }
   } catch (error) {
-    console.log(error)
+    console.log(error, "endpoint: ", endpoint)
     throw error;
   }
 }
