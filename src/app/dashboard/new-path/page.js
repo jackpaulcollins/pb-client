@@ -3,13 +3,9 @@
 import { useState } from 'react';
 import { POST } from '@/app/api/api';
 import { useRouter } from 'next/navigation';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 import { newPathFormHighlighter, newPathFormSchema } from '../../../yup/NewPathForm';
 import StepDelegator from '../../../components/StepDelegator'
 import ErrorAlert from '../../../components/ErrorAlert';
-// import { useCreatePathMutation } from '../../../../features/paths/pathApiSlice';
-// import { setFlash } from '../../../../features/notifications/notificationsSlice';
 
 function NewPathForm() {
   const router = useRouter();

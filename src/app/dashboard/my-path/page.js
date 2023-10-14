@@ -98,12 +98,12 @@ function CurrentUserPath() {
       return (
         <div className="mt-6 overflow-hidden w-2/3 m-auto bg-white shadow sm:rounded-lg">
           <div className="inline-flex w-full justify-evenly">
-            <div onClick={() => handleDateChange(-1)}><LeftCarrot /></div>
+            <div className="hover:cursor-pointer" onClick={() => handleDateChange(-1)}><LeftCarrot /></div>
             <div className="inline-flex">
               {validForDate != null ? renderValidity() : ''}
               <h1 className="font-semibold">{calculateDateFromOffest()}</h1>
             </div>
-            <div onClick={() => handleDateChange(1)}><RightCarrot /></div>
+            <div className="hover:cursor-pointer" onClick={() => handleDateChange(1)}><RightCarrot /></div>
           </div>
           <CurrentUserPathDescriptionSection
             details={{

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import Datepicker from 'react-tailwindcss-datepicker';
 import PropTypes from 'prop-types';
 import { newPathFormHighlighter } from '../yup/NewPathForm'

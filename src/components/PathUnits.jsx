@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CirclePlus from './assets/icons/CirclePlus';

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { XCircleIcon } from '@heroicons/react/20/solid';
 import { Transition } from '@headlessui/react';
 import { Fragment } from 'react';
