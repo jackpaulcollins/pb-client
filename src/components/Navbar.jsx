@@ -54,13 +54,13 @@ function Navbar() {
                       </Link>
                       <Link
                         href="/dashboard/my-path"
-                        className={activeLink('/my-path') ? 'bg-gray-900 rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white' : 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
+                        className={activeLink('/dashboard/my-path') ? 'bg-gray-900 rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white' : 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
                       >
                         My Path
                       </Link>
                       <Link
                         href="/dashboard/new-path"
-                        className={activeLink('/new-path') ? 'bg-gray-900 rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white' : 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
+                        className={activeLink('/dashboard/new-path') ? 'bg-gray-900 rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white' : 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
                       >
                         <FontAwesomeIcon icon={faPlus} style={{ color: '#ffffff' }} />
                       </Link>
@@ -168,14 +168,14 @@ function Navbar() {
                 </Link>
                 <Link
                   href="/dashboard/my-path"
-                  className={activeLink('/my-paths') ? 'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white' : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
+                  className={activeLink('dashboard/my-path') ? 'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white' : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
 
                 >
-                  My Paths
+                  My Path
                 </Link>
                 <Link
                   href="/dashboard/new-path"
-                  className={activeLink('/new-path') ? 'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white' : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
+                  className={activeLink('/dashboard/new-path') ? 'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white' : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'}
 
                 >
                   Create a Path
