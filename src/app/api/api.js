@@ -22,7 +22,13 @@ export async function GET(endpoint) {
   try {
     const response = await fetch(`${BASE_URL}/${endpoint}`, { headers: requestHeaders });
     const { status } = response;
+    
+    if (status === 204) {
+      return { status }
+    }
+
     const data = await response.json();
+
     return { status, data }
   } catch (error) {
 
