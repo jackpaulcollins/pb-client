@@ -1,20 +1,18 @@
-/* eslint-disable */
-import { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { clearFlash } from '../../features/notifications/notificationsSlice';
+import { Fragment } from 'react';
+import { useNotificationContext } from '@/app/contexts/NotificationProvider';
 import { Transition } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/20/solid'
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { XCircleIcon } from '@heroicons/react/20/solid'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 
-export default function Notificaton({ message, icon, title }) {
-  const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
+export default function Notificaton() {
+  const { title, message, icon, dispatch } = useNotificationContext();
+
+  const show = !!message;
 
   const dismiss = () => {
-    dispatch(clearFlash());
-    setShow(false);
+    dispatch({ type: 'CLEAR_NOTIFICATION' });
   }
 
   const renderIcon = () => {
