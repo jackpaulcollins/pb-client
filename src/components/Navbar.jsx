@@ -1,5 +1,4 @@
 'use client'
-
 import { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -24,9 +23,9 @@ function Navbar() {
   };
 
   const handleLogout = () => {
+    router.push('/login');
     dispatch({type: 'CLEAR_USER'});
     localStorage.removeItem('PB-JWT-TOKEN');
-    router.push('/login');
   };
 
   if (user) {
