@@ -14,10 +14,12 @@ import RightCarrot from '../../../components/assets/icons/RightCarrot';
 import FullScreenLoading from '../../../components/FullScreenLoading';
 import Check from '../../../components/assets/icons/Check';
 import X from '../../../components/assets/icons/X';
+import { useNotificationContext } from '@/app/contexts/NotificationProvider';
 
 function CurrentUserPath() {
   const { user } = useAuthContext();
   const { date, dispatch } = useDateContext();
+  const { dispatch: navDispatch } = useNotificationContext();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [path, setPath] = useState(null);
@@ -44,7 +46,7 @@ function CurrentUserPath() {
     if (response.status === 200) {
       setPath(response.data.path);
     } else if (response.status === 204) {
-      // dispatch(setFlash({ title: 'Information', message: "You haven't created a path yet!", icon: 'info' }));
+      navDispatch({ type: 'SET_NOTIFICATION', payload: {title: 'Information', message: "You haven't created a path yet!", icon: 'info' }});
       router.push('/dashboard/new-path');
     }
   };

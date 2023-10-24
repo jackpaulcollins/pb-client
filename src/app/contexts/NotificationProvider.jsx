@@ -1,15 +1,14 @@
 "use client"
-import { createContext, useContext, useReducer, useState } from "react"
+import { createContext, useContext, useReducer } from "react"
 
 const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
 
   const notificationReducer = (state, action) => {
-    console.log(action)
-    const { title, message, icon } = action.payload;
     switch (action.type) {
       case 'SET_NOTIFICATION':
+        const { title, message, icon } = action.payload;
         return { ...state, title, message, icon };
       case 'CLEAR_NOTIFICATION':
         return { ...state, title: null, message: null, icon: null };
