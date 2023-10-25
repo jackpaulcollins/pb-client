@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   const path = usePathname();
 
   useEffect(() => {
-    if (path === '/login') {
+    if (path === '/login' || path === '/' || path === '/register') {
       setInitialLoading(false);
       return;
     }
