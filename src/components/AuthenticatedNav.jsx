@@ -42,15 +42,6 @@ function AuthenticatedNav() {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <Image
-                        className="h-8 w-auto"
-                        width={50}
-                        height={80}
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company"
-                      />
-                    </div>
                     <div className="hidden sm:ml-6 sm:block">
                       <div className="flex space-x-4">
                         <Link
