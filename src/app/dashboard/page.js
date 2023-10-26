@@ -2,12 +2,6 @@
 import DashboardTimeline from "@/components/DashboardTimeline";
 
 function Dashboard() {
-  const content = (
-    <div>
-      <DashboardTimeline />
-    </div>
-  );
-
-  return content;
+  return <DashboardTimeline />
 }
 export default Dashboard;
