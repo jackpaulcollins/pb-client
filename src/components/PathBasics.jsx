@@ -44,7 +44,7 @@ function PathBasics({ formData, setFormData }) {
             From
             <div>
               <Datepicker
-                inputClassName="pathStartDate relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full border-gray-300 dark:bg-slate-800 dark:text-white/80 dark:border-slate-600 rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-indigo-600 focus:ring-indigo-600/20"
+                inputClassName="pathStartDate relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full bg-slate-100 text-white/80 border-slate-600 rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-indigo-600 focus:ring-indigo-600/20"
                 asSingle
                 useRange={false}
                 primaryColor="indigo"
@@ -64,7 +64,7 @@ function PathBasics({ formData, setFormData }) {
             To
             <i className="text-xxs font-light ml-2">(optional)</i>
             <Datepicker
-              inputClassName="pathEndDate relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full border-gray-300 dark:bg-slate-800 dark:text-white/80 dark:border-slate-600 rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-indigo-600 focus:ring-indigo-600/20 border-gray-200"
+              inputClassName="pathEndDate relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full border-gray-300 bg-slate-100 text-white/80 border-slate-600 rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-indigo-600 focus:ring-indigo-600/20 border-gray-200"
               asSingle
               useRange={false}
               primaryColor="indigo"

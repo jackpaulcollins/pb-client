@@ -10,6 +10,7 @@ import systemTimeZones from '../../constants/timeZones'
 import ErrorAlert from '../../components/ErrorAlert';
 import GoogleAuthProvider from '@/components/GoogleAuthProvider';
 import { useAuthContext } from '../contexts/AuthProvider'
+import { POST } from '../api/api';
 
 function Login() {
   const emailRef = useRef();
@@ -94,7 +95,7 @@ function Login() {
       } else if (error.status === 401) {
         setErrMsg('Unauthorized');
       } else {
-        setErrMsg('Login Failed');
+        setErrMsg('Registration Failed');
       }
     }
   };
@@ -116,11 +117,6 @@ function Login() {
   const content = (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign up for an account
         </h2>
@@ -143,7 +139,7 @@ function Login() {
                     value={email}
                     onChange={handleEmailInput}
                     autoComplete="on"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     required
                   />
                 </label>
@@ -161,7 +157,7 @@ function Login() {
                     value={firstName}
                     onChange={handleFirstNameInput}
                     autoComplete="off"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     required
                   />
                 </label>
@@ -179,7 +175,7 @@ function Login() {
                     value={lastName}
                     onChange={handleLastNameInput}
                     autoComplete="off"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     required
                   />
                 </label>
@@ -194,7 +190,7 @@ function Login() {
                   onChange={handlePasswordInput}
                   value={password}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </label>
             </div>
@@ -208,7 +204,7 @@ function Login() {
                   onChange={handlePasswordConfirmationInput}
                   value={passwordConfirmation}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </label>
             </div>
@@ -257,14 +253,6 @@ function Login() {
             </div>
           </div>
         </div>
-
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?
-          {' '}
-          <Link href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-            Start a 14 day free trial
-          </Link>
-        </p>
       </div>
     </div>
   );
